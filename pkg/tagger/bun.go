@@ -1,6 +1,8 @@
 package tagger
 
 import (
+	"strings"
+
 	"github.com/fraenky8/tables-to-go/pkg/database"
 )
 
@@ -25,5 +27,11 @@ func (t Bun) GenerateTag(db database.Database, column database.Column) string {
 		isNotNull = ",notnull"
 	}
 
-	return `bun:"` + column.Name + isPk + isAutoIncrement + isNotNull + `"`
+	defaultValue := ""
+	if column.DefaultValue.Valid {
+		v := strings.Split(column.DefaultValue.String, "::")[0]
+		defaultValue = ",default:" + v
+	}
+
+	return `bun:"` + column.Name + isPk + isAutoIncrement + isNotNull + defaultValue + `"`
 }
