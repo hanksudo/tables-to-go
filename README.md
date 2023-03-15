@@ -218,6 +218,8 @@ Usage of tables-to-go:
     	prefix for file- and struct names
   -s string
     	schema name (default "public")
+  -table string
+    	table name (default "public")
   -socket string
     	The socket file to use for connection. Takes precedence over host:port.
   -structable-recorder

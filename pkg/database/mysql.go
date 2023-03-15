@@ -50,15 +50,20 @@ func (mysql *MySQL) DSN() string {
 }
 
 // GetTables gets all tables for a given database by name.
-func (mysql *MySQL) GetTables() (tables []*Table, err error) {
+func (mysql *MySQL) GetTables(tableName string) (tables []*Table, err error) {
 
-	err = mysql.Select(&tables, `
+	whereTableName := ""
+	if tableName != "" {
+		whereTableName = fmt.Sprintf("AND table_name ='%s'", tableName)
+	}
+
+	err = mysql.Select(&tables, fmt.Sprintf(`
 		SELECT table_name AS table_name
 		FROM information_schema.tables
 		WHERE table_type = 'BASE TABLE'
-		AND table_schema = ?
+		AND table_schema = ? %s
 		ORDER BY table_name
-	`, mysql.DbName)
+	`, whereTableName), mysql.DbName)
 
 	if mysql.Verbose {
 		if err != nil {

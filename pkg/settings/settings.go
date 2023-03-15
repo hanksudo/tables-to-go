@@ -166,6 +166,7 @@ type Settings struct {
 	Host   string
 	Port   string
 	Socket string
+	Table  string
 
 	OutputFilePath string
 	OutputFormat   OutputFormat
@@ -210,6 +211,7 @@ func New() *Settings {
 		Host:           "127.0.0.1",
 		Port:           "", // left blank, automatically determined if not set
 		Socket:         "",
+		Table:          "",
 		OutputFilePath: dir,
 		OutputFormat:   OutputFormatCamelCase,
 		FileNameFormat: FileNameFormatCamelCase,
@@ -221,6 +223,7 @@ func New() *Settings {
 		NoInitialism: false,
 
 		TagsNoDb: false,
+		TagsBun:  false,
 
 		TagsMastermindStructable:       false,
 		TagsMastermindStructableOnly:   false,

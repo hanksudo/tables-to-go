@@ -24,7 +24,7 @@ type Database interface {
 	Connect() (err error)
 	Close() (err error)
 
-	GetTables() (tables []*Table, err error)
+	GetTables(tableName string) (tables []*Table, err error)
 	PrepareGetColumnsOfTableStmt() (err error)
 	GetColumnsOfTable(table *Table) (err error)
 

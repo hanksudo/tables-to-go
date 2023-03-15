@@ -58,15 +58,20 @@ func (pg *Postgresql) DSN() string {
 }
 
 // GetTables gets all tables for a given schema by name.
-func (pg *Postgresql) GetTables() (tables []*Table, err error) {
+func (pg *Postgresql) GetTables(tableName string) (tables []*Table, err error) {
 
-	err = pg.Select(&tables, `
+	whereTableName := ""
+	if tableName != "" {
+		whereTableName = fmt.Sprintf("AND table_name ='%s'", tableName)
+	}
+
+	err = pg.Select(&tables, fmt.Sprintf(`
 		SELECT table_name
 		FROM information_schema.tables
 		WHERE table_type = 'BASE TABLE'
-		AND table_schema = $1
+		AND table_schema = $1 %s
 		ORDER BY table_name
-	`, pg.Schema)
+	`, whereTableName), pg.Schema)
 
 	if pg.Verbose {
 		if err != nil {

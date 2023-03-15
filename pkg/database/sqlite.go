@@ -50,14 +50,18 @@ func (s *SQLite) DSN() string {
 	return strings.ReplaceAll(u.RequestURI(), "_auth=&", "_auth&")
 }
 
-func (s *SQLite) GetTables() (tables []*Table, err error) {
+func (s *SQLite) GetTables(tableName string) (tables []*Table, err error) {
+
+	whereTableName := ""
+	if tableName != "" {
+		whereTableName = fmt.Sprintf("AND name ='%s'", tableName)
+	}
 
 	err = s.Select(&tables, `
 		SELECT name AS table_name
 		FROM sqlite_master
-		WHERE type = 'table'
-		AND name NOT LIKE 'sqlite?_%' escape '?'
-	`)
+		WHERE type = 'table'`+whereTableName+
+		`AND name NOT LIKE 'sqlite?_%' escape '?'`)
 
 	if s.Verbose {
 		if err != nil {

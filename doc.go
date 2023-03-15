@@ -66,6 +66,8 @@
 //            	prefix for file- and struct names
 //          -s string
 //            	schema name (default "public")
+//          -table string
+//              table name (default "public")
 //          -structable-recorder
 //            	generate a structable.Recorder field
 //          -suf string

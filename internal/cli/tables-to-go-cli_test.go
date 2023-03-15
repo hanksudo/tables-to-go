@@ -31,9 +31,15 @@ func (db *mockDb) Close() (err error) {
 	return nil
 }
 
-func (db *mockDb) GetTables() (tables []*database.Table, err error) {
+func (db *mockDb) GetTables(tableName string) (tables []*database.Table, err error) {
 	db.Called()
-	return db.tables, nil
+	for _, table := range db.tables {
+		if table.Name != tableName {
+			continue
+		}
+		tables = append(tables, table)
+	}
+	return tables, nil
 }
 
 func (db *mockDb) PrepareGetColumnsOfTableStmt() (err error) {
