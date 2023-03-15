@@ -36,16 +36,25 @@ func (pg *Postgresql) Connect() error {
 
 // DSN creates the DSN String to connect to this database.
 func (pg *Postgresql) DSN() string {
+	var dsns []string
 	user := pg.defaultUserName
 	if pg.Settings.User != "" {
 		user = pg.Settings.User
 	}
-	if pg.Settings.Socket != "" {
-		return fmt.Sprintf("host=%s user=%s dbname=%s password=%s",
-			pg.Settings.Socket, user, pg.Settings.DbName, pg.Settings.Pswd)
+
+	dsns = append(dsns, fmt.Sprintf("user=%s", user))
+	dsns = append(dsns, fmt.Sprintf("dbname=%s", pg.Settings.DbName))
+	if pg.Settings.Pswd != "" {
+		dsns = append(dsns, fmt.Sprintf("password=%s", pg.Settings.Pswd))
 	}
-	return fmt.Sprintf("host=%s port=%s user=%s dbname=%s password=%s sslmode=disable",
-		pg.Settings.Host, pg.Settings.Port, user, pg.Settings.DbName, pg.Settings.Pswd)
+	if pg.Settings.Socket != "" {
+		dsns = append(dsns, fmt.Sprintf("host=%s", pg.Settings.Socket))
+	} else {
+		dsns = append(dsns, fmt.Sprintf("host=%s", pg.Settings.Host))
+		dsns = append(dsns, fmt.Sprintf("port=%s", pg.Settings.Port))
+		dsns = append(dsns, "sslmode=disable")
+	}
+	return strings.Join(dsns, " ")
 }
 
 // GetTables gets all tables for a given schema by name.
