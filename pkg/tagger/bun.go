@@ -19,16 +19,18 @@ func (t Bun) GenerateTag(db database.Database, column database.Column) string {
 
 	isAutoIncrement := ""
 	defaultValue := ""
+	isNotNull := ""
+
 	if db.IsAutoIncrement(column) {
 		isAutoIncrement = ",autoincrement"
-	} else if column.DefaultValue.Valid {
-		v := strings.Split(column.DefaultValue.String, "::")[0]
-		defaultValue = ",default:" + v
-	}
-
-	isNotNull := ""
-	if column.IsNullable == "NO" {
-		isNotNull = ",notnull"
+	} else {
+		if column.DefaultValue.Valid {
+			v := strings.Split(column.DefaultValue.String, "::")[0]
+			defaultValue = ",default:" + v
+		}
+		if column.IsNullable == "NO" {
+			isNotNull = ",notnull"
+		}
 	}
 
 	return `bun:"` + column.Name + isPk + isAutoIncrement + isNotNull + defaultValue + `"`
