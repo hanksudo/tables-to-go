@@ -74,6 +74,8 @@
 //            	type of database to use, currently supported: [pg mysql] (default "pg")
 //          -tags-no-db
 //            	do not create db-tags
+//          -tags-bun
+//            	generate struct with tags for use in Bun (https://bun.uptrace.dev/guide/models.html)
 //          -tags-structable
 //            	generate struct with tags for use in Masterminds/structable (https://github.com/Masterminds/structable)
 //          -tags-structable-only
