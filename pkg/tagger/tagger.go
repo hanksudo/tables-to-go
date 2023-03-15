@@ -14,6 +14,7 @@ const (
 	// number is an ascending sequence of i*2 to determine which tags to generate later
 	tagDb         = 1
 	tagMastermind = 2
+	tagBun        = 4
 )
 
 var stringPool = sync.Pool{
@@ -43,6 +44,7 @@ func NewTaggers(s *settings.Settings) *Taggers {
 		taggers: map[int]Tagger{
 			tagDb:         new(Db),
 			tagMastermind: new(Mastermind),
+			tagBun:        new(Bun),
 		},
 	}
 
@@ -57,6 +59,9 @@ func NewTaggers(s *settings.Settings) *Taggers {
 func (t *Taggers) enableTags() {
 	if t.settings.TagsNoDb {
 		t.enabledTags = tagsDisabled
+	}
+	if t.settings.TagsBun {
+		t.enabledTags |= tagBun
 	}
 	if t.settings.TagsMastermindStructable {
 		t.enabledTags |= tagMastermind

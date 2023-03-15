@@ -179,6 +179,7 @@ type Settings struct {
 	NoInitialism bool
 
 	TagsNoDb bool
+	TagsBun  bool
 
 	TagsMastermindStructable       bool
 	TagsMastermindStructableOnly   bool

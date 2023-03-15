@@ -51,6 +51,7 @@ func NewCmdArgs() (args *CmdArgs) {
 	flag.BoolVar(&args.NoInitialism, "no-initialism", args.NoInitialism, "disable the conversion to upper-case words in column names")
 
 	flag.BoolVar(&args.TagsNoDb, "tags-no-db", args.TagsNoDb, "do not create db-tags")
+	flag.BoolVar(&args.TagsBun, "tags-bun", args.TagsBun, "generate struct with tags for use in Bun (https://bun.uptrace.dev/guide/models.html)")
 
 	flag.BoolVar(&args.TagsMastermindStructable, "tags-structable", args.TagsMastermindStructable, "generate struct with tags for use in Masterminds/structable (https://github.com/Masterminds/structable)")
 	flag.BoolVar(&args.TagsMastermindStructableOnly, "tags-structable-only", args.TagsMastermindStructableOnly, "generate struct with tags ONLY for use in Masterminds/structable (https://github.com/Masterminds/structable)")
