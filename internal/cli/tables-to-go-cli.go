@@ -204,15 +204,15 @@ func generateImports(content *strings.Builder, settings *settings.Settings, colu
 
 func mapDbColumnTypeToGoType(s *settings.Settings, db database.Database, column database.Column) (goType string, columnInfo columnInfo) {
 	if db.IsInteger(column) {
-		goType = "int"
+		goType = "int64"
 		if db.IsNullable(column) {
-			goType = getNullType(s, "*int", "sql.NullInt64")
+			goType = getNullType(s, "*int", "*int64")
 			columnInfo.isNullable = true
 		}
 	} else if db.IsFloat(column) {
 		goType = "float64"
 		if db.IsNullable(column) {
-			goType = getNullType(s, "*float64", "sql.NullFloat64")
+			goType = getNullType(s, "*float64", "*float64")
 			columnInfo.isNullable = true
 		}
 	} else if db.IsTemporal(column) {
@@ -220,7 +220,7 @@ func mapDbColumnTypeToGoType(s *settings.Settings, db database.Database, column 
 			goType = "time.Time"
 			columnInfo.isTemporal = true
 		} else {
-			goType = getNullType(s, "*time.Time", "sql.NullTime")
+			goType = getNullType(s, "*time.Time", "*time.Time")
 			columnInfo.isTemporal = s.Null == settings.NullTypeNative
 			columnInfo.isNullable = true
 		}
@@ -230,14 +230,15 @@ func mapDbColumnTypeToGoType(s *settings.Settings, db database.Database, column 
 		case "boolean":
 			goType = "bool"
 			if db.IsNullable(column) {
-				goType = getNullType(s, "*bool", "sql.NullBool")
+				goType = getNullType(s, "*bool", "*bool")
 				columnInfo.isNullable = true
 			}
 		default:
 			// Everything else we cannot detect defaults to (nullable) string.
 			goType = "string"
 			if db.IsNullable(column) {
-				goType = getNullType(s, "*string", "sql.NullString")
+				// goType = getNullType(s, "*string", "sql.NullString")
+				goType = getNullType(s, "*string", "*string")
 				columnInfo.isNullable = true
 			}
 		}
