@@ -3,7 +3,7 @@ package tagger
 import (
 	"strings"
 
-	"github.com/fraenky8/tables-to-go/pkg/database"
+	"github.com/hanksudo/tables-to-go/pkg/database"
 )
 
 // Bun represents the Bun "bun"-tag.

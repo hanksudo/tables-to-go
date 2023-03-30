@@ -6,7 +6,7 @@ import (
 
 	"github.com/jmoiron/sqlx"
 
-	"github.com/fraenky8/tables-to-go/pkg/settings"
+	"github.com/hanksudo/tables-to-go/pkg/settings"
 )
 
 var (

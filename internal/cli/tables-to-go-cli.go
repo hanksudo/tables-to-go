@@ -9,10 +9,10 @@ import (
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 
-	"github.com/fraenky8/tables-to-go/pkg/database"
-	"github.com/fraenky8/tables-to-go/pkg/output"
-	"github.com/fraenky8/tables-to-go/pkg/settings"
-	"github.com/fraenky8/tables-to-go/pkg/tagger"
+	"github.com/hanksudo/tables-to-go/pkg/database"
+	"github.com/hanksudo/tables-to-go/pkg/output"
+	"github.com/hanksudo/tables-to-go/pkg/settings"
+	"github.com/hanksudo/tables-to-go/pkg/tagger"
 )
 
 var (

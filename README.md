@@ -6,9 +6,9 @@ database schema.
 
 **Tables change, run the tool, get your structs!**
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/fraenky8/tables-to-go)](https://goreportcard.com/report/github.com/fraenky8/tables-to-go)
-[![GoDoc](https://godoc.org/github.com/fraenky8/tables-to-go?status.svg)](https://godoc.org/github.com/fraenky8/tables-to-go)
-[![Build & Test](https://github.com/fraenky8/tables-to-go/workflows/Go/badge.svg)](https://github.com/fraenky8/tables-to-go/actions)
+[![Go Report Card](https://goreportcard.com/badge/github.com/hanksudo/tables-to-go)](https://goreportcard.com/report/github.com/hanksudo/tables-to-go)
+[![GoDoc](https://godoc.org/github.com/hanksudo/tables-to-go?status.svg)](https://godoc.org/github.com/hanksudo/tables-to-go)
+[![Build & Test](https://github.com/hanksudo/tables-to-go/workflows/Go/badge.svg)](https://github.com/hanksudo/tables-to-go/actions)
 [![Code Coverage](https://scrutinizer-ci.com/g/fraenky8/tables-to-go/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/fraenky8/tables-to-go/?branch=master)
 
 ## Requirements
@@ -21,7 +21,7 @@ This project provides a make file but can also simply be installed with the
 go-install command:
 
 ```
-go install github.com/fraenky8/tables-to-go@master
+go install github.com/hanksudo/tables-to-go@master
 ```
 
 To enable SQLite3 support, clone the repo manually and run the make file:
@@ -30,7 +30,7 @@ To enable SQLite3 support, clone the repo manually and run the make file:
 make sqlite3
 ```
 
-See [this PR](https://github.com/fraenky8/tables-to-go/pull/23) why it's 
+See [this PR](https://github.com/hanksudo/tables-to-go/pull/23) why it's 
 disabled by default.
 
 ## Getting Started
@@ -111,7 +111,7 @@ go guidelines.
 See [here](https://github.com/golang/go/wiki/CodeReviewComments#initialisms) 
 for more details. 
 Words which gets converted can be found 
-[here](https://github.com/fraenky8/tables-to-go/blob/master/internal/cli/tables-to-go-cli.go#L31).
+[here](https://github.com/hanksudo/tables-to-go/blob/master/internal/cli/tables-to-go-cli.go#L31).
 <br>
 This behaviour can be disabled by providing the command-line flag `-no-initialism`.
 

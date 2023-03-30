@@ -1,4 +1,4 @@
-module github.com/fraenky8/tables-to-go
+module github.com/hanksudo/tables-to-go
 
 go 1.18
 
